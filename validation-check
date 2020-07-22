@@ -1,12 +1,12 @@
-Ansible
+# Ansible
 ansible-playbook --check will not make any changes on remote systems. Any module instrumented to support "check mode" will report what changes they would have made rather than making them.
 
 Command:
-
+==
 ansible-playbook sample.yml --check
 Documentation: http://docs.ansible.com/ansible/latest/playbooks_checkmode.html
 
-Apache HTTP Server
+# Apache HTTP Server
 configtest runs a configuration file syntax test. It parses the configuration files and either reports Syntax Ok or detailed information about the particular syntax error.
 
 Commands:
