@@ -1,4 +1,4 @@
-# To run command after commit:
+#To run command after commit:
 
 1. vim .git/hooks/post-commit
 2. add the following to pull after commiting 
@@ -6,7 +6,7 @@
   unset GIT_INDEX_FILE
   git --work-tree=/var/www/html --git-dir=/home/demo/proj/.git checkout -f
 
-# To change remote origine 
+#To change remote origine 
 
 1. git config --list
 2, git remote set-url origin <url>
