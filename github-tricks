@@ -1,0 +1,7 @@
+# To run command after commit:
+
+1. vim .git/hooks/post-commit
+2. add the following to pull after commiting 
+  #!/bin/bash
+  unset GIT_INDEX_FILE
+  git --work-tree=/var/www/html --git-dir=/home/demo/proj/.git checkout -f
