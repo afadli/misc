@@ -1,0 +1,47 @@
+-h2:
+- 2>&1 redirect error to stdin
+- history -c wipes all history 
+- history -w removes the complete history .
+- man -k ls 
+- mandb will update man database 
+- info ls print manual 
+- df -Th will show disk space on mounted devices 
+- findmnt show mounts
+- cp -a /somedi/. . will copy files and hidden to the curent location .
+- tar -rvf tarball.tar filename  will add filname to tarball.tar
+- tar -uvf tarball.tar filename  will update filname to tarball.tar
+- tar -tvf tarball.tar to view files without extracting.
+- tar -xvf tarball.tar -C /path/target
+- awk -F : '{print $4}' filename will print the 4th line from filename, ":" is field separator .
+- awk -F : '/user/ {print $4}' filename will print the 4th field of the line that has user .
+- sed -i -e '2d;20,25d' filename will delete lines 2 and 20 to 25 in filename .
+- tty1 nongraphical env .
+- pts/1 from graphical env .
+- getfact -R /direct > file.acls to get the ACL of a directory .
+- setfacl --restore=file.acls to restor ACL.
+- setfacl -m g:sales:rx /dir will modify the ACL of dir and set group sales read nad exec 
+- setfacl -m d:g:salesr:rx /dir d is for defailt, the order matter !!!
+- user_xattr is used with xfs 
+- en for Ethernet, wl for WLAN, ww for WWAN 
+- o for onboard, s for hotplug slot, p for PCI, em for embedded
+  example: eno1 means Ethernet onboard number 1 
+- ip -s link show will show current static because of -s 
+- ip link set eth0 up 
+- subscription-manager register will register to rhel repos.
+- /etc/pki/product has the CA 
+- mount -o loop /path/iso /mnt will mount iso as read-only 
+- in fstab: /dev/cdrom /mnt iso9660 defaults 0 0 
+- local_repo.repo file :
+  [BaseOS]
+  name=BaseOS 
+  baseurl=file:///mnt
+  gpgcheck=0
+  enabled=1
+  run yum repolist to verify 
+- yum group list to list the group of packages 
+- yum groups info "Basic Web Server" to get info aboutt the group
+- yum module list 
+- yum module install php:7.2 will install php version 7.2 modules- yum will upload rpm db but rpm won't 
+- use createrepo command to make a repo
+- 
+
