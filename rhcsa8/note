@@ -43,5 +43,18 @@
 - yum module list 
 - yum module install php:7.2 will install php version 7.2 modules- yum will upload rpm db but rpm won't 
 - use createrepo command to make a repo
-- 
+- systemctl -t help will print options .
+- systemctl --type=service will print all running services.
+- systemctl -l status service will list details about a service.
+- at 15:00 then press enter 
+- atq to print at jobs 
+- journalctl is not a replacement of syslog
+- journalctl is lost after reboot .
+- Storage=auto will make journalctl write to /var/log/journal if it exists .
+- Mib is 1024 and MB is 1000
+- for LVM parition, use 8e 
+- tune2fs -l /dev/sda1 will print info about the partition
+- tune2fs -o acl,user_xattrto switch on acl and user_xattr
+- xfs_admin -L newlabl to change label of XFS fs.
+- mkswap /dev/sda2 to make sda2 a swap, then run swaponn
 
