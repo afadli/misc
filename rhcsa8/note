@@ -57,4 +57,16 @@
 - tune2fs -o acl,user_xattrto switch on acl and user_xattr
 - xfs_admin -L newlabl to change label of XFS fs.
 - mkswap /dev/sda2 to make sda2 a swap, then run swaponn
+- in parted, you need to "set 1 lvm on" to set lvm on partition 1.
+- wipefs -a /dev/sda will delete table 
+- to make lvm partition:
+  1. pvcreate /dev/sda1
+  2. vgcreate vgname /dev/sda1
+  3. lvcreate -n lvname -L 5G vgname # to specify size 
+  3.b lvcreate -n lvname -l 50%Free vgname # to use 50% of free space
+- lvresize -L +5G -r /dev/vgname/lvname 
+- lvextend -r -l +75%VG /dev/vgname/lvnmae #will add 75% of the vgname 
+- lvextend -r -l +75%FREE /dev/vgname/lvnmae #will add 75% of all free space 
+- vgextend vgname /dev/sdb2
+
 
