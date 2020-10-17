@@ -68,5 +68,6 @@
 - lvextend -r -l +75%VG /dev/vgname/lvnmae #will add 75% of the vgname 
 - lvextend -r -l +75%FREE /dev/vgname/lvnmae #will add 75% of all free space 
 - vgextend vgname /dev/sdb2
+- udevadm monitor will give you a prompt of any added device .
 
 
