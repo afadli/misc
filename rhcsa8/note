@@ -2,6 +2,9 @@
 - 2>&1 redirect error to stdin
 - history -c wipes all history 
 - history -w removes the complete history .
+- useradd -m -u <UID> -G sales.
+- chage -E 2020-12-31 username .
+- passwd -n 30 -w 3 -x 90 username . (man passwd)
 - man -k ls 
 - mandb will update man database 
 - info ls print manual 
@@ -42,6 +45,7 @@
 - yum groups info "Basic Web Server" to get info aboutt the group
 - yum module list 
 - yum module install php:7.2 will install php version 7.2 modules- yum will upload rpm db but rpm won't 
+- yum module info --profile 7.1 
 - use createrepo command to make a repo
 - systemctl -t help will print options .
 - systemctl --type=service will print all running services.
@@ -69,5 +73,66 @@
 - lvextend -r -l +75%FREE /dev/vgname/lvnmae #will add 75% of all free space 
 - vgextend vgname /dev/sdb2
 - udevadm monitor will give you a prompt of any added device .
-
-
+- ps -ef to see the exac command used 
+- ps -fax to see processes parent-child relation 
+- kill -l to list all avail signals
+- in top, use "r" for renice.
+- tuned-adm list to list tuned profiles.
+- tuned-adm profilepowersave.
+- systemctl list-dependencies to list dependecies .
+- systemctl status crond .
+- logger -p kern.err hello will write "hello" to the kernel facility 
+- partprobe /dev/sda will write the partition changes to kernel
+- to use parted:
+  1. mklable gpt
+  2. mkpart part 1 (for the first partition)
+  3. xfs
+  4. 1MiB
+  5. 5GiB (to create a 5GiB partition)
+  6. set 1 lvm on (to set lvm for partition 1)
+- tune2fs -l /dev/sda3 to list to properties
+- tune2fs -L to set a label, or 2elabel .
+- xfs does not reduce in size.
+- to reduce lvm
+  1. resize2fs /dev/vg/lv 10G (reduce from 18g to 10g)
+  2. lvreduce -L -8G /dev/vg/lv 
+  3. resize2fs /dev/vg/lv
+- to create pool with stratis:
+  1. yum install stratis-cli
+  2. systemctl enable --now stratisd 
+  3. stratis pool create mypool /dev/sda
+  3.a stratis pool add-data mypool /dev/sdb (to add device)
+  4. stratis fs create mypool fs1 
+- to use vdo :
+  1. yum install cdo kmod-kvdo
+  2. vdo create -name=vdo1 --device=/dev/sda --vdoLogicalSize 1T
+  3. mkfs.xfs -K /dev/mapper/vdo1 
+- to check what kernel is doing , check dmesg, uname or /proc 
+- journalctl -k prints kernel errors 
+- to view kernel : uname -r or hostnamctl --status 
+- systemd-udevd loads the hardware modules 
+- systemctl get-default to see the default target.
+- bios loooks for /boot/grub2/bru.cf, and for uefi /boot/efi/EFI/redhat 
+- after modifiying /etc/default/grub, run grub2-mkconfig -o /boot/grub/location 
+- boot process:
+  1. POST
+  2. select bootable device
+  3. loading grub2
+  4. loading kernel and initramfs
+  5. starting /sbin/init -> systemd 
+  6. processing initrd.target.
+  7. switching to the root fs
+  8. running default.target .
+- adding systemd.unit=emergency.target to kernel line will load bar minimum and ask for root password.
+- adding systemd.unit=rescue.target to kernel line will load full mode and will ask for root password. 
+- adding rd.break, will not ask for root password but it is in initramfs stage.
+- on rescude usb, run chroot /mnt/sysimage 
+- to reinstall grub:
+  1. chroot /mnt/sysimage from rescue usb
+  2. grub2-install /dev/sda (sda is where the grub will be installed)
+- dracut --force will fix the initramfs 
+- semanage port -l to list port label 
+- semanage port -a -t ssh_port_t -p tcp 2022 to label port 2022 for access by sshd .
+- semanage port -m to modify 
+- firwall-cmd --add-port=2022/tcp && firewalld-cmd --add-port=2022/tcp --permanent .
+- 
