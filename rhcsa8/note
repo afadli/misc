@@ -135,4 +135,50 @@
 - semanage port -a -t ssh_port_t -p tcp 2022 to label port 2022 for access by sshd .
 - semanage port -m to modify 
 - firwall-cmd --add-port=2022/tcp && firewalld-cmd --add-port=2022/tcp --permanent .
+- if GSSAPIAAuthentication is on it slows down connection.
+- UseDNS on can slow down the connection.
+- enabling and disabling SELinux requires reboot .
+- /etc/sysconfig/selinux is where you can enforce SELinux
+- SELinux are logged in /var/log/audit/audit/log
+- getenforce to see the SELinux policies enabled .
+- setenforce 0 to disable temporarly SELinux 
+- sestatus -v will list yhe status .
+- ls -Z to see the current context settings.
+- use semanage and not chcon 
+- to set SELinux contex:
+  1. semanage fcontext -a -t httpd_sys_content_t "/folder"
+  2. restorcon -R -v /folder
+- for man _selinux, yum provides */sepolicy 
+- getsebool -a to list all SELinux boolean settings
+- semanage boolean -l to get more info .
+- setsebool -P <policy> on to set the default switch to on .
+- sealert is useful for troubleshooting 
+- nftables replaced iptables .
+- firewalld does not filter outgoing packets.
+- firewall-cmd --get-services will print services using firewald.
+- custom firewalld files can be added to /etc/firewalld/services.
+- default rules are in /usr/lib/firewalld/services .
+- firewall-cmd --get-default-zone 
+- firewall-cmd --get-zones to see the list of zones. 
+- firewall-cmd --add-service=vnc-server --permanent to add the VNC server to the config.
+- firewall-cmd --add-port=2022/tcp --permanent && firewall-cmd --reload.
+- nfs4 is the default NFS in rhel8
+- portmapper uses udp 2049 
+- smbclient -L server.local 
+- mount -t cifs -o user=guest <source> /mnt
+- configuring nfs:
+  1. yum install nfs-utils 
+  2. firewall-cmd --add-service=nfs --permanent 
+  2.a firewall-cmd --add-service={nfs3,rpc-bind,mountd} --permanent 
+  2.b firewall-cmd --reload
+- installing samba:
+  1. yum install samba
+  2. edit /etc/samba/smb.conf
+  3. 
+    [samashare]
+    comment = "comment here"
+    reand only = No
+    path = /sambashare
+  4. smbpasswd -a userone
+  5. firewall-cmd --ad-service samba.
 - 
