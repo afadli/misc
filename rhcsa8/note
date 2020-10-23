@@ -171,7 +171,7 @@
   2. firewall-cmd --add-service=nfs --permanent 
   2.a firewall-cmd --add-service={nfs3,rpc-bind,mountd} --permanent 
   2.b firewall-cmd --reload
-- installing samba:
+- installing samba server:
   1. yum install samba
   2. edit /etc/samba/smb.conf
   3. 
@@ -181,4 +181,11 @@
     path = /sambashare
   4. smbpasswd -a userone
   5. firewall-cmd --ad-service samba.
-- 
+- ym install cifs-utils samba-client 
+- auto mount on the client:
+  1. in /etc/auto.master , add /nfs/data /etc/auto.fsdata
+  2. edit /etc/auto.fsdata , add files -rw server:/share
+- for users, * -rw server:/folder/& 
+- timdedatctl set-ntp 1 to switch ntp on.
+- date -s 16:03 to set the time.
+
