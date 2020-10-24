@@ -21,6 +21,10 @@
 - tty1 nongraphical env .
 - pts/1 from graphical env .
 - getfact -R /direct > file.acls to get the ACL of a directory .
+- getfact -c filename will display the output without headers
+- setfacl -m m:rw filename change the mask to rw permissions
+- setfacl -x u:username filename to remove username's permission from filename
+- 
 - setfacl --restore=file.acls to restor ACL.
 - setfacl -m g:sales:rx /dir will modify the ACL of dir and set group sales read nad exec 
 - setfacl -m d:g:salesr:rx /dir d is for defailt, the order matter !!!
@@ -188,4 +192,5 @@
 - for users, * -rw server:/folder/& 
 - timdedatctl set-ntp 1 to switch ntp on.
 - date -s 16:03 to set the time.
-
+- umask -S to display : u=rwx,g=rw,o=-
+- 
