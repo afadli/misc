@@ -107,6 +107,7 @@
   3. stratis pool create mypool /dev/sda
   3.a stratis pool add-data mypool /dev/sdb (to add device)
   4. stratis fs create mypool fs1 
+  5. stratis fs list  will list the uuid
 - to use vdo :
   1. yum install cdo kmod-kvdo
   2. vdo create -name=vdo1 --device=/dev/sda --vdoLogicalSize 1T
