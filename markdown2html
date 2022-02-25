@@ -1,5 +1,6 @@
 # this is a markdown to html using regex
 
+#!/usr/bin/env python3
 def entry(request, title):
      content = util.get_entry(title)
      if content is None:
